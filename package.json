@@ -1,0 +1,26 @@
+{
+  "name": "spincycle-bikes",
+  "version": "1.0.0",
+  "description": "SpinCycle Bikes - Campus Bike Sharing Management System (Group 3 - YG-CSE2E-G03)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js",
+    "init-db": "node database/database.js"
+  },
+  "keywords": [
+    "spincycle",
+    "express",
+    "sqlite3",
+    "bike-sharing"
+  ],
+  "author": "Group 3 (YG-CSE2E-G03)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.3.0",
+    "sqlite3": "^6.0.1"
+  },
+  "allowScripts": {
+    "sqlite3@6.0.1": true
+  }
+}
