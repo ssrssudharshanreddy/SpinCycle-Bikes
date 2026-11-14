@@ -22,8 +22,26 @@ const {
 const { parseBikeQueryParams, buildPaginationMetadata } = require('./pagination');
 
 // ==========================================
-// 1. Health-Check Endpoint
+// 1. Root & Health-Check Endpoints
 // ==========================================
+
+/**
+ * GET / - Service overview and API index.
+ */
+function getRoot(req, res) {
+  return res.status(200).json({
+    success: true,
+    name: 'SpinCycle Bikes API',
+    version: '1.0.0',
+    description: 'Campus Bike-Sharing Management REST API (Group 03 | YG-CSE2E-G03)',
+    endpoints: {
+      health: '/health',
+      bikes: '/bikes',
+      riders: '/riders',
+      rentals: '/rentals',
+    },
+  });
+}
 
 /**
  * GET /health - Check server and SQLite database connectivity.
@@ -520,6 +538,7 @@ async function createRental(req, res, next) {
 }
 
 module.exports = {
+  getRoot,
   getHealth,
   getBikes,
   getBikeById,

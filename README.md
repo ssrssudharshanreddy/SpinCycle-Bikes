@@ -28,12 +28,12 @@
 
 | Platform | Link |
 |---|---|
-| GitHub Repository | |
-| Live Application (Render) | |
-| API Base URL | |
-| Health Check | |
+| GitHub Repository | https://github.com/ssrssudharshanreddy/SpinCycle-Bikes |
+| Live Application (Render) | https://spincycle-bikes-ukfh.onrender.com |
+| API Base URL | https://spincycle-bikes-ukfh.onrender.com |
+| Health Check | https://spincycle-bikes-ukfh.onrender.com/health |
 
-> **Local vs. Public URL:** Public repository and Render deployment links above are intentionally left blank and will be populated after submission/deployment. For local development and testing, the Express server runs on **`http://localhost:3000`** (for example, `http://localhost:3000/health`).
+> **Local vs. Public URL:** The public API is live on Render at **`https://spincycle-bikes-ukfh.onrender.com`**. For local development and testing, the Express server runs on **`http://localhost:3000`** (for example, `http://localhost:3000/health`).
 
 ---
 
@@ -1020,16 +1020,16 @@ In the terminal running `npm start`, press `Ctrl + C` to stop the Express server
 
 ## Deployment Information
 
-This application is designed to be accessible through a **Render** deployment link once its public service URL is supplied. At present, the project is verified only for **local execution** at `http://localhost:3000`, and no live public deployment is claimed here.
+This application is deployed and live on **Render**. It can be accessed publicly via the URLs below:
 
 | Deployment Endpoint | Public URL |
 |---|---|
-| Render Service URL | |
-| Public API Base URL | |
-| Public Health Check | |
-| Public Bikes Endpoint | |
-| Public Riders Endpoint | |
-| Public Rentals Endpoint | |
+| Render Service URL | https://spincycle-bikes-ukfh.onrender.com |
+| Public API Base URL | https://spincycle-bikes-ukfh.onrender.com |
+| Public Health Check | https://spincycle-bikes-ukfh.onrender.com/health |
+| Public Bikes Endpoint | https://spincycle-bikes-ukfh.onrender.com/bikes |
+| Public Riders Endpoint | https://spincycle-bikes-ukfh.onrender.com/riders |
+| Public Rentals Endpoint | https://spincycle-bikes-ukfh.onrender.com/rentals |
 
 ### Render Deployment Configuration
 

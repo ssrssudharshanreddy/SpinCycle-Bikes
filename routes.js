@@ -15,8 +15,9 @@ const router = express.Router();
 const endpoints = require('./endpoints');
 
 // ==========================================
-// 1. Health-Check Route
+// 1. Root & Health-Check Routes
 // ==========================================
+router.get('/', endpoints.getRoot);
 router.get('/health', endpoints.getHealth);
 
 // ==========================================
