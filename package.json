@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node server.js",
     "test": "node test.js",
+    "build": "npm rebuild sqlite3 --build-from-source",
+    "postinstall": "node -e \"if (process.env.RENDER === 'true') { const { execSync } = require('child_process'); console.log('==> Render environment detected: compiling sqlite3 from source...'); execSync('npm rebuild sqlite3 --build-from-source', { stdio: 'inherit' }); }\"",
     "init-db": "node database/database.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "keywords": [
     "spincycle",

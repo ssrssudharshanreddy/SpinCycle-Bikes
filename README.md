@@ -96,7 +96,7 @@ The system is scoped specifically as a **local backend REST API** for managing b
 ### Intended Users
 
 - **Campus Bike-Sharing Coordinators / Staff:** Manage the bicycle fleet, register student riders, issue new rentals, and inspect rental history.
-- **Student Developers & Evaluators:** Test, verify, and integrate the REST API endpoints using tools such as VS Code REST Client (`lab-03.http`), Postman, browser GET requests, or PowerShell.
+- **Student Developers & Evaluators:** Test, verify, and integrate the REST API endpoints using tools such as VS Code REST Client (`assignment-01.http`), Postman, browser GET requests, or PowerShell.
 
 ### Main Functionalities
 
@@ -119,14 +119,14 @@ The system is scoped specifically as a **local backend REST API** for managing b
 
 | Technology | Version / Package | Purpose in SpinCycle Bikes |
 |---|---|---|
-| **Node.js** | `26.8.2` (`.node-version`) | JavaScript runtime environment executing the Express server and SQLite database layer outside the browser. |
+| **Node.js** | `20.18.0` / LTS (`.node-version`) | JavaScript runtime environment executing the Express server and SQLite database layer outside the browser. |
 | **Express.js** | `^5.3.0` (`express`) | Web framework used for JSON body parsing (`express.json()`), routing, HTTP request/response handling, 404 handling, and centralized error middleware. |
 | **JavaScript** | CommonJS (`require` / `module.exports`) | Primary programming language used across all modules of the application. |
 | **SQLite** | Embedded RDBMS (`database/bikeStore.db`) | Lightweight, serverless, file-based relational database storing `riders`, `bikes`, and `rentals` with foreign-key enforcement. |
 | **sqlite3** | `^6.0.1` (`sqlite3`) | Node.js SQLite driver used to open `bikeStore.db` and execute parameterized SQL queries wrapped in Promises. |
 | **npm** | Included with Node.js | Dependency manager used to install `express` and `sqlite3` (`package.json`, `package-lock.json`) and run the `npm start` script. |
 | **REST API (JSON)** | HTTP + JSON | Architectural style exposing resource-oriented endpoints (`/health`, `/bikes`, `/riders`, `/rentals`) with standard HTTP methods and status codes. |
-| **VS Code & REST Client** | IDE + `lab-03.http` | Primary development environment and integrated HTTP request runner (`lab-03.http`) used to organize and execute endpoint test cases. |
+| **VS Code & REST Client** | IDE + `assignment-01.http` | Primary development environment and integrated HTTP request runner (`assignment-01.http`) used to organize and execute endpoint test cases. |
 | **Postman / HTTP Testing Tools** | API testing tools | Used alongside browser GET checks, PowerShell (`Invoke-RestMethod`), and `sqlite3.exe` CLI for verifying API behavior and database state. |
 
 ---
@@ -147,11 +147,12 @@ SpinCycle-Bikes/
 ├── .gitignore
 ├── .node-version
 ├── endpoints.js
-├── lab-03.http
+├── assignment-01.http
 ├── package-lock.json
 ├── package.json
 ├── pagination.js
 ├── README.md
+├── render.yaml
 ├── routes.js
 ├── server.js
 ├── test.js
@@ -174,10 +175,11 @@ SpinCycle-Bikes/
 | `postman/` | **Member 6** (Sudharshan) | Contains the 40-request Postman Collection v2.1.0 (`SpinCycle-Bikes.postman_collection.json`) organized into 10 folders with pre-configured tests, and the comprehensive test report (`POSTMAN_TEST_REPORT.md`) verifying all test cases with a 100% PASS rate. |
 | `test.js` | **Member 6** (Sudharshan) | Standalone reproducible automated test runner verifying 42 test cases (36 core non-mutating tests + 6 isolated lifecycle CRUD tests) against the modular Express app and SQLite database (`npm test` / `node test.js`). |
 | `README.md` | **Member 6** (Sudharshan) | Complete academic, architectural, database, API, testing, and contribution documentation for Group Assignment – 01. |
-| `lab-03.http` | Course Resource | Ready-to-run 26-request test suite for the VS Code REST Client extension. |
+| `assignment-01.http` | Course Resource | Ready-to-run 26-request test suite for the VS Code REST Client extension (formerly `lab-03.http`). |
 | `screenshots/` | Course Evidence | Stores all 16 verified screenshot images (`01` through `16`) demonstrating project setup, API operations, and SQLite database verification. |
-| `package.json` | Project Config | Application metadata, scripts (`npm start`, `npm run init-db`), dependencies (`express`, `sqlite3`), and `allowScripts` configuration. |
-| `.gitignore` & `.node-version` | Git / Runtime | Excludes dependencies, logs, and OS files from version control; specifies Node.js `26.8.2`. |
+| `package.json` | Project Config | Application metadata, scripts (`npm start`, `npm run build`, `npm run init-db`), dependencies (`express`, `sqlite3`), and engines configuration. |
+| `render.yaml` | Cloud Deployment | Render Blueprint configuration specifying the build command (`npm rebuild sqlite3 --build-from-source`) and startup settings. |
+| `.gitignore` & `.node-version` | Git / Runtime | Excludes dependencies, logs, and OS files from version control; specifies Node.js LTS `20.18.0`. |
 
 ---
 
@@ -944,9 +946,9 @@ Run all commands in **Windows PowerShell**.
 ### 1. Prerequisites
 
 - **Git** (for cloning from GitHub)
-- **Node.js** `26.8.2` (or compatible LTS version matching `.node-version`)
+- **Node.js** LTS `20.18.0` (or compatible version matching `.node-version`)
 - **npm** (bundled with Node.js)
-- **Visual Studio Code** (recommended, with the **REST Client** extension for `lab-03.http`)
+- **Visual Studio Code** (recommended, with the **REST Client** extension for `assignment-01.http`)
 
 Verify your installed Node.js and npm versions:
 
@@ -969,7 +971,7 @@ code .
 
 Inside the repository root, you can directly access:
 - [`README.md`](README.md) – Full project, database, and API documentation.
-- [`lab-03.http`](lab-03.http) – Ready-to-run HTTP request collection for testing all endpoints.
+- [`assignment-01.http`](assignment-01.http) – Ready-to-run HTTP request collection for testing all endpoints (formerly `lab-03.http`).
 
 ### 3. Install Dependencies
 
@@ -1007,7 +1009,7 @@ Invoke-RestMethod -Uri "http://localhost:3000/health"
 
 ### 6. Test the API
 
-- **VS Code REST Client:** Open `lab-03.http` in VS Code (with the REST Client extension installed) and click **Send Request** above any request block.
+- **VS Code REST Client:** Open `assignment-01.http` in VS Code (with the REST Client extension installed) and click **Send Request** above any request block.
 - **Browser / Postman:** Send requests to `http://localhost:3000` (for example, `GET http://localhost:3000/bikes?page=1&limit=2` or `GET http://localhost:3000/rentals`).
 
 ### 7. Stop the Server
@@ -1028,6 +1030,20 @@ This application is designed to be accessible through a **Render** deployment li
 | Public Bikes Endpoint | |
 | Public Riders Endpoint | |
 | Public Rentals Endpoint | |
+
+### Render Deployment Configuration
+
+To ensure successful deployment on Render without native C++ library mismatches (`GLIBC_2.38 not found` error):
+
+| Setting | Value | Notes |
+|---|---|---|
+| **Runtime** | `Node` | Configured via `render.yaml` or Render Dashboard |
+| **Node Version** | `20.18.0` | Specified in `.node-version` (Render LTS runtime) |
+| **Build Command** | `npm install && npm rebuild sqlite3 --build-from-source` | Automatically executed via `render.yaml` or `postinstall` hook in `package.json` |
+| **Start Command** | `node server.js` | Launches Express server listening on dynamic `$PORT` |
+| **Port Binding** | `process.env.PORT \|\| 3000` | Server binds to Render's dynamically allocated `$PORT` |
+
+> **Native Addon Compilation on Render:** Render runs an Ubuntu 22.04 LTS container (`GLIBC 2.35`). Precompiled binaries for `sqlite3` downloaded by npm may target newer Linux distros (`GLIBC 2.38`), causing runtime crashes (`ERR_DLOPEN_FAILED: GLIBC_2.38 not found`). Rebuilding `sqlite3` from source during build (`npm rebuild sqlite3 --build-from-source`) compiles the native addon using Render's host libraries, ensuring zero compatibility issues.
 
 ### SQLite Persistence Considerations
 
@@ -1080,9 +1096,9 @@ node test.js
 3. Ensure the backend server is running in Windows PowerShell (`npm start`).
 4. Run the entire collection using Postman Collection Runner or trigger individual requests; built-in test scripts verify status codes and response bodies automatically.
 
-### VS Code REST Client Test Suite (`lab-03.http`)
+### VS Code REST Client Test Suite (`assignment-01.http`)
 
-The repository also retains [`lab-03.http`](lab-03.http) with **26 structured HTTP requests** covering:
+The repository provides [`assignment-01.http`](assignment-01.http) (formerly `lab-03.http`) with **26 structured HTTP requests** covering:
 
 1. **Health Check:** `GET /health` (`200`).
 2. **Bikes Retrieval, Pagination & Search:** Default `/bikes`, valid/invalid/nonexistent `/bikes/:id`, pagination (`page=1&limit=2`, `page=2&limit=2`), invalid pagination (`page=0`, `limit=-2`, `page=abc`), search (`type=Mountain`, `type=Road`), combined search + pagination (`type=Mountain&page=1&limit=2`), and empty search validation (`type=%20%20`).
@@ -1224,7 +1240,7 @@ Through completing **SpinCycle Bikes**, the group gained hands-on experience in:
 - **Input Validation:** Validating route parameters, request body objects, strings, integers, and real calendar dates before touching the database.
 - **Error Handling:** Returning structured `400`, `404`, `409`, `500`, and `503` JSON responses without exposing sensitive internals.
 - **Search & Pagination:** Implementing case-insensitive SQL filtering (`LOWER(...)`) and deterministic `LIMIT`/`OFFSET` pagination with `COUNT(*)` metadata.
-- **API Testing:** Verifying success, edge, and failure cases systematically using `lab-03.http`, Postman/HTTP tools, browser checks, and read-only SQLite CLI queries.
+- **API Testing:** Verifying success, edge, and failure cases systematically using `assignment-01.http`, automated test suite (`test.js`), Postman, browser checks, and read-only SQLite CLI queries.
 - **Team Collaboration:** Coordinating six distinct backend and QA responsibilities into a single cohesive repository.
 - **Technical Documentation:** Producing clear, accurate, code-verified engineering documentation in Markdown and Mermaid.
 
